@@ -1,0 +1,14 @@
+SELECT Hackers.hacker_id, name, summaxscore
+FROM Hackers
+JOIN 
+(SELECT hacker_id, SUM(maxscore) as summaxscore
+    FROM
+        (
+        SELECT hacker_id, challenge_id, MAX(score) as maxscore
+        FROM Submissions
+        GROUP BY 1, 2) sub
+GROUP BY 1
+ORDER BY 2) sub2
+ON Hackers.hacker_id = sub2.hacker_id
+WHERE sub2.summaxscore > 0 
+ORDER BY 3 DESC, 1
