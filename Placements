@@ -1,0 +1,17 @@
+WITH t1 AS
+(SELECT Students.Name as Name1, Packages.salary as Salary1, Students.ID as ID1
+FROM Students
+JOIN Packages 
+ON Students.ID = Packages.ID), -- student
+t2 AS
+(SELECT Friends.Friend_ID, Packages.salary as Salary2, Friends.ID as ID2
+FROM Friends
+JOIN Packages 
+ON Friends.Friend_ID = Packages.ID) –- friends
+
+SELECT t1.Name1
+FROM t1
+JOIN t2
+ON t1.ID1 = t2.ID2
+WHERE t1.Salary1 < t2.Salary2
+ORDER BY t2.Salary2
