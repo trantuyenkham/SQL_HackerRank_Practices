@@ -1,0 +1,11 @@
+SELECT comcode, founderr, 
+COUNT(DISTINCT(lead_manager_code)), 
+COUNT(DISTINCT(senior_manager_code)), 
+COUNT(DISTINCT(manager_code)), COUNT(DISTINCT(employee_code))
+FROM
+  (SELECT e.lead_manager_code, e.senior_manager_code, e.manager_code, e.employee_code, c.company_code as comcode, c.founder as founderr 
+  FROM Employee e
+  LEFT JOIN Company c 
+  ON e.company_code = c.company_code) sub
+GROUP BY 1, 2
+ORDER BY 1
