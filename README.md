@@ -1,4 +1,4 @@
-# SQL_HackerRank_Practices
+# SQL_Practices
 
 This repository is where I record some of my SQL practices code while preparing in HackerRank.
 
